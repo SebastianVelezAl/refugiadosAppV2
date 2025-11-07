@@ -339,11 +339,9 @@ export default function DescargarReportePage() {
                     Exportar CSV
                   </button>
                   <button
-                    onClick={() =>
-                      downloadFromServer(r.id, r.title || "reporte")
-                    }
+                    onClick={() => exportCsv(r)}
                     className="p-2 rounded-md bg-gray-700 hover:bg-gray-600"
-                    title="Descargar"
+                    title="Descargar CSV"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
