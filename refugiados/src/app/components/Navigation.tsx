@@ -8,6 +8,11 @@ import { FiHome, FiFileText, FiBarChart2 } from "react-icons/fi";
 export default function Navigation() {
   const pathname = usePathname() || "/";
 
+  // No mostrar la navegación en la página de login
+  if (pathname === "/" || pathname === "/registro") {
+    return null;
+  }
+
   const isActive = (path: string) => {
     if (path === "/home") return pathname === "/" || pathname === "/home";
     return pathname.startsWith(path);
