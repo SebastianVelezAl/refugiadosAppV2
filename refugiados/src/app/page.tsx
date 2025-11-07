@@ -1,5 +1,6 @@
 "use client"; // Directiva necesaria para usar hooks y eventos
 
+import React from "react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -27,7 +28,7 @@ export default function LoginPage() {
   const [showResetOption, setShowResetOption] = useState(false);
 
   // Función para manejar el inicio de sesión con correo y contraseña
-  const handleEmailPasswordSignIn = async (e: React.FormEvent) => {
+  const handleEmailPasswordSignIn = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault(); // Evita que la página se recargue al enviar el formulario
     setError(""); // Limpia errores previos
     setShowResetOption(false);
@@ -96,7 +97,7 @@ export default function LoginPage() {
         await signInWithPopup(auth, provider);
       }
       router.push("/home");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error durante el inicio de sesión con Google:", error);
       setError("No se pudo iniciar sesión con Google.");
     }
@@ -155,6 +156,7 @@ export default function LoginPage() {
             {showResetOption && (
               <div className="flex flex-col items-center gap-2">
                 <button
+                  type="button"
                   onClick={handleSendPasswordReset}
                   className="w-full py-2 mt-1 text-sm font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700"
                 >
@@ -162,6 +164,7 @@ export default function LoginPage() {
                 </button>
 
                 <button
+                  type="button"
                   onClick={handleGoogleSignIn}
                   className="w-full py-2 mt-1 text-sm font-semibold text-white bg-gray-700 rounded-lg hover:bg-gray-600 flex items-center justify-center gap-2"
                 >
@@ -204,11 +207,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="relative flex items-center">
-            <div className="flex-grow border-t border-gray-600"></div>
-            <span className="flex-shrink mx-4 text-sm text-gray-400">O</span>
-            <div className="flex-grow border-t border-gray-600"></div>
-          </div>
+          {/* Separador eliminado para esta vista: barra horizontal removida */}
 
           <button
             onClick={handleGoogleSignIn}
