@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import AuthGuard from "../components/AuthGuard";
 import { db } from "lib/firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 
@@ -222,7 +223,8 @@ export default function DescargarReportePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6">
+    <AuthGuard>
+      <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6">
       <header className="flex items-center gap-3 mb-6">
         <button
           onClick={() => router.back()}
@@ -366,6 +368,7 @@ export default function DescargarReportePage() {
           )}
         </ul>
       </main>
-    </div>
+      </div>
+    </AuthGuard>
   );
 }

@@ -12,6 +12,7 @@ import { mockSignOut } from "lib/firebase.mock";
 
 // Importa los íconos para la barra de navegación
 import { FiHome, FiFileText, FiBarChart2, FiLogOut } from "react-icons/fi";
+import AuthGuard from "../components/AuthGuard";
 
 export default function HomePage() {
   const router = useRouter();
@@ -42,7 +43,8 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white">
+    <AuthGuard>
+      <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       <header className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <h1 className="text-lg font-semibold">Inicio</h1>
@@ -126,6 +128,7 @@ export default function HomePage() {
           </a>
         </nav>
       </footer>
-    </div>
+      </div>
+    </AuthGuard>
   );
 }
