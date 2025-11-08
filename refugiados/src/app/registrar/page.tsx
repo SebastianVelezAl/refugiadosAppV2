@@ -9,7 +9,8 @@ import { mockAddHabitante } from "lib/firestore.mock";
 // --------------------------------
 
 // Importa un ícono para el botón de "atrás"
-import { FiArrowLeft } from "react-icons/fi";
+import { FiArrowLeft } from 'react-icons/fi';
+import AuthGuard from '../components/AuthGuard';
 
 // Define la estructura de los datos del habitante
 interface Habitante {
@@ -94,7 +95,8 @@ export default function RegistrarPage() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-900 text-white p-4">
+    <AuthGuard>
+      <div className="flex flex-col min-h-screen bg-gray-900 text-white p-4">
       <header className="flex items-center mb-6">
         <button onClick={() => router.back()} className="p-2">
           <FiArrowLeft size={24} />
@@ -195,6 +197,7 @@ export default function RegistrarPage() {
           </div>
         </form>
       </main>
-    </div>
+      </div>
+    </AuthGuard>
   );
 }

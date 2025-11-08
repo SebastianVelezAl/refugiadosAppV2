@@ -15,6 +15,14 @@ export const mockSignInWithPopup = () => {
     // Simulamos un retraso de red de 0.5 segundos
     setTimeout(() => {
       console.log(" MOCK: ¡Usuario autenticado!");
+      // Marcamos una señal en localStorage para que los guards en modo mock detecten sesión
+      try {
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('refugiapp_mock_user', 'true');
+        }
+      } catch (e) {
+        // ignore (por ejemplo SSR)
+      }
       resolve({ user: fakeUser });
     }, 500);
   });
@@ -26,6 +34,13 @@ export const mockSignOut = () => {
     console.log(" MOCK: Simulando cierre de sesión...");
     setTimeout(() => {
       console.log(" MOCK: ¡Sesión cerrada!");
+      try {
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('refugiapp_mock_user');
+        }
+      } catch (e) {
+        // ignore
+      }
       resolve();
     }, 300);
   });
